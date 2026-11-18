@@ -1,4 +1,4 @@
-name: 'Publish npm Package'
+name: 'Publish NuGet Packages'
 
 on:
   push:
@@ -6,15 +6,23 @@ on:
       - '*.*.*'
 
 concurrency:
-  group: npm-publish-${{ github.ref }}
+  group: nuget-publish-${{ github.ref }}
   cancel-in-progress: false
 
 permissions:
+  actions: read
   contents: read
   id-token: write
 
 jobs:
   publish:
     name: 'Publish'
-    uses: DEFRA/lis-github-actions/.github/workflows/npm-package-publish.yml@0.8.2
-    secrets: inherit
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: release
+    steps:
+      - name: Publish NuGet packages
+        uses: DEFRA/lis-github-actions/actions/publish-nuget@feature/LREG-900-convert-to-actions # temporary branch test
+        with:
+          version: ${{ github.ref_name }}
+          nuget-username: ${{ secrets.NUGET_USERNAME }}
