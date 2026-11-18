@@ -21,8 +21,7 @@ jobs:
     timeout-minutes: 20
     environment: release
     steps:
-      - name: Publish NuGet packages
-        uses: DEFRA/lis-github-actions/actions/publish-nuget@feature/LREG-900-convert-to-actions # temporary branch test
+      - name: Publish Npm packages
+        uses: DEFRA/lis-github-actions/actions/publish-npm@feature/LREG-900-convert-to-actions # temporary branch test
         with:
           version: ${{ github.ref_name }}
-          nuget-username: ${{ secrets.NUGET_USERNAME }}
