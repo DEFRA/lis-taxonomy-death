@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Build, test and pack
-        uses: DEFRA/lis-github-actions/actions/build-test-dotnet@feature/LREG-900-convert-to-actions # temporary branch test
+        uses: DEFRA/lis-github-actions/actions/build-test-node@feature/LREG-900-convert-to-actions # temporary branch test
         with:
           version: ${{ needs.get-version.outputs.version }}
           ref: ${{ github.event.pull_request.merge_commit_sha }}
@@ -48,7 +48,7 @@ jobs:
     steps:
       - name: Run Sonar analysis
         id: sonar
-        uses: DEFRA/lis-github-actions/actions/sonar-dotnet@feature/LREG-900-convert-to-actions # temporary branch test
+        uses: DEFRA/lis-github-actions/actions/sonar-node@feature/LREG-900-convert-to-actions # temporary branch test
         with:
           version: ${{ needs.get-version.outputs.version }}
           ref: ${{ github.event.pull_request.merge_commit_sha }}
